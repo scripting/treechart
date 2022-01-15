@@ -1,0 +1,134 @@
+body {
+	font-family: Ubuntu;
+	font-size: 16px;
+	background-color: whitesmoke;
+	}
+
+.divPageBody {
+	width: 90%;
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 400px;
+	}
+.divPageBody h1 {
+	}
+.divPageBody p {
+	line-height: 140%;
+	margin-bottom: 25px;
+	}
+
+.divOutlineViewer, .divJsonViewer,  .divOpmlViewer {
+	margin-top: 15px;
+	padding: 3px;
+	border: 1px solid silver;
+	}
+.divOutlineViewer li {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	}
+.divOutlineViewer ul {
+	list-style-type: circle;
+	}
+
+
+a {
+	cursor: pointer;
+	}
+.divUserInterface {
+	display: table-row;
+	width: 250px;
+	}
+.divCommands {
+	display: table-cell;
+	vertical-align: top;
+	width: 300px;
+	padding-right: 25px;
+	}
+.divChart {
+	display: table-cell;
+	}
+.divNotes, .divLegend {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	}
+
+.formForSidebar {
+	position: relative;
+	
+	padding-top: 35px;
+	padding-right: 19px;
+	padding-bottom: 14px;
+	padding-left: 19px;
+	
+	background-color: white;
+	border: 1px solid  silver;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	min-width: 170px;
+	
+	width: 200px;
+	}
+.formForSidebar:after {
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	padding: 3px 7px;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+	color: #9da0a4;
+	-webkit-border-radius: 4px 0 4px 0;
+	-moz-border-radius: 4px 0 4px 0;
+	border-radius: 4px 0 4px 0;
+	}
+.alignmentGroup:after {
+	content: "Tree alignment";
+	}
+.lineHeightGroup:after {
+	content: "Line height";
+	}
+.shadowBlurGroup:after {
+	content: "Shadow blur";
+	}
+.shadowOffsetGroup:after {
+	content: "Shadow offset X, Y";
+	}
+.colorPickerGroup:after {
+	content: "Text, fill, line colors";
+	}
+.fontSizeGroup:after {
+	content: "Font size";
+	}
+.fontFamilyGroup:after {
+	content: "Font family";
+	}
+.opacityGroup:after {
+	content: "Opacity";
+	}
+.treeWidthHeightGroup:after {
+	content: "Tree width, height";
+	}
+.styleGroup:after {
+	content: "Text style";
+	}
+
+.divSidebarColorPicker {
+	margin-right: 15px;
+	}
+.spFontNameInMenu {
+	font-size: 14px;
+	}
+
+.tdPropertySetters {
+	vertical-align: top;
+	width: 200px;
+	padding-left: 150px;
+	}
+.tdChartViewer {
+	vertical-align: top;
+	padding-left: 50px;
+	}
+

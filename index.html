@@ -1,0 +1,142 @@
+<html>
+	<head>
+		<title>treechart</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="//s3.amazonaws.com/scripting.com/code/includes/jquery-1.9.1.min.js"></script>
+<link href="//s3.amazonaws.com/scripting.com/code/includes/bootstrap.css" rel="stylesheet">
+<script src="//s3.amazonaws.com/scripting.com/code/includes/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="//s3.amazonaws.com/scripting.com/code/fontawesome/css/all.css">
+<link href="//fonts.googleapis.com/css?family=Ubuntu:400,500i,700" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
+
+<script src="//s3.amazonaws.com/scripting.com/code/includes/basic/code.js"></script>
+<link href="//s3.amazonaws.com/scripting.com/code/includes/basic/styles.css" rel="stylesheet" type="text/css">
+
+		<script src="treefun/scripts/treetodiagram.js"></script>
+		<script src="treefun/scripts/layoutText.js"></script>
+		<script src="treefun/demo_scripts/texttotree.js"></script>
+		<script src="http://scripting.com/code/testing/opmlpackage/client/opml.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+		
+		<script src="http://fargo.io/misc/colorpicker/jquery.colorPicker.js"></script>"
+		<link href="http://fargo.io/misc/colorpicker/colorPicker.css" rel="stylesheet">
+		
+		<script src="code.js"></script>
+		<link rel="stylesheet" href="styles.css" type="text/css">
+		</head>
+	<body>
+		<div class="divPageBody">
+			<table>
+				<tr>
+					<td class="tdPropertySetters">
+						<form class="formForSidebar styleGroup">
+							<center style="margin-bottom: 10px;">
+								<table>
+									<tr>
+										<td>
+											<label class="checkbox" style="padding-right: 15px;">
+												<input type="checkbox" id="idTextStyleBold" onclick="setTextStyle ();" value="option1">
+												Bold
+												</label>
+											</td>
+										<td>
+											<label class="checkbox">
+												<input type="checkbox" id="idTextStyleItalic" onclick="setTextStyle ();" value="option2">
+												Italic
+												</label>
+											</td>
+										</tr>
+									</table>
+								</center>
+							</form>
+						<form class="formForSidebar alignmentGroup">
+							<center style="margin-bottom: 10px;">
+								<table>
+									<tr>
+										<td>
+											<label class="radio" style="padding-right: 15px;">
+												<input type="radio" name="optionsHoriz" id="idTreeRootLeft" onclick="setTreeRootPosition ('left');" value="option1">
+												Left
+												</label>
+											</td>
+										<td>
+											<label class="radio">
+												<input type="radio" name="optionsVert" id="idTreeRootTop" onclick="setTreeRootPosition ('top');" value="option2">
+												Top
+												</label>
+											</td>
+										</tr>
+									</table>
+								</center>
+							</form>
+						<form class="formForSidebar fontFamilyGroup" style="text-align: center">
+							<div class="divFontMenu btn-group" id="idFontMenuGroup" style="margin-bottom: 10px;">
+								<button class="btn dropdown-toggle" data-toggle="dropdown"><span  id="idFontMenuName"></span> <span class="caret"></span></button>
+								<ul class="dropdown-menu" id="idFontMenu" style="text-align: left">
+									</ul>
+								</div>
+							</form>
+						<form class="formForSidebar fontSizeGroup">
+							<center><input class="input-small" type="text" id="idFontSize" onKeyUp="fontSizeKeyUp ();" placeholder="Type a number here."></center>
+							</form>
+						<form class="formForSidebar treeWidthHeightGroup">
+							<center><input class="input-small" type="text" id="idTreeWidth" onKeyUp="treeWidthKeyUp ();" placeholder="Type a number here."></center>
+							<center><input class="input-small" type="text" id="idTreeHeight" onKeyUp="treeHeightKeyUp ();" placeholder="Type a number here."></center>
+							</form>
+						<form class="formForSidebar colorPickerGroup">
+							<center>
+								<table>
+									<tr>
+										<td>
+											<div class="divSidebarColorPicker">
+												<span class="spColorPicker" id="idTextColorPicker">
+													<input name="color1" type="text" value="#333399" id="idColorInput" />
+													</span>
+												</div>
+											</td>
+										<td>
+											<div class="divSidebarColorPicker">
+												<span class="spColorPicker" id="idFillColorPicker">
+													<input name="color2" type="text" value="#333399" id="idShadowColorInput" />
+													</span>
+												</div>
+											</td>
+										<td>
+											<div class="divSidebarColorPicker">
+												<span class="spColorPicker" id="idLineColorPicker">
+													<input name="color3" type="text" value="#333399" id="idFillColorInput" />
+													</span>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</center>
+							</form>
+						</td>
+					<td class="tdChartViewer">
+						<div class="divChart">
+							<span>
+								<svg id="diagramSvg" xmlns="http://www.w3.org/2000/svg">
+									<style id="stylesheet"></style>
+									<defs>
+										<marker id="arrowHead" viewBox="-10 -5 10 10" markerUnits="strokeWidth" markerWidth="6" markerHeight="5" orient="auto">
+											<path d="M -10 -5 L 0 0 L -10 5 z"></path>
+											</marker>
+										</defs>
+									<g id="diagramGroup"></g>
+									</svg>
+								</span>
+							</div>
+						</dt>
+					</tr>
+				</table>
+			</div>
+		<script>
+			$(document).ready (function () {
+				startup ();
+				});
+			</script>
+		</body>
+	</html>
