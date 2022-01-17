@@ -3,6 +3,7 @@
 		<title>treechart</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
 		<script src="//s3.amazonaws.com/scripting.com/code/includes/jquery-1.9.1.min.js"></script>
 <link href="//s3.amazonaws.com/scripting.com/code/includes/bootstrap.css" rel="stylesheet">
 <script src="//s3.amazonaws.com/scripting.com/code/includes/bootstrap.min.js"></script>
@@ -14,21 +15,66 @@
 <script src="//s3.amazonaws.com/scripting.com/code/includes/basic/code.js"></script>
 <link href="//s3.amazonaws.com/scripting.com/code/includes/basic/styles.css" rel="stylesheet" type="text/css">
 
-		<script src="treefun/scripts/treetodiagram.js"></script>
-		<script src="treefun/scripts/layoutText.js"></script>
-		<script src="treefun/demo_scripts/texttotree.js"></script>
-		<script src="http://scripting.com/code/testing/opmlpackage/client/opml.js"></script>
+		
+		<script src="http://scripting.com/code/testing/treechart/treefun/scripts/treetodiagram.js"></script>
+		<script src="http://scripting.com/code/testing/treechart/treefun/scripts/layoutText.js"></script>
+		<script src="http://scripting.com/code/testing/treechart/treefun/demo_scripts/texttotree.js"></script>
+		
 		<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
 		
 		<script src="http://fargo.io/misc/colorpicker/jquery.colorPicker.js"></script>"
 		<link href="http://fargo.io/misc/colorpicker/colorPicker.css" rel="stylesheet">
 		
+		<script src="http://scripting.com/code/opmlpackage/client/opml.js"></script>
+		
+		
 		<script src="code.js"></script>
 		<link rel="stylesheet" href="styles.css" type="text/css">
+		
 		</head>
 	<body>
+		<div class="divMenubar" id="idMenubar">
+			<div class="topbar-wrapper" style="z-index: 5;">
+				<div class="navbar navbar-fixed-top" data-dropdown="dropdown">
+					<div class="divVersionNumber" id="idVersionNumber">
+						0.4.8
+						</div>
+					<div class="navbar-inner">
+						<div class="container">
+							<a class="brand" onclick="clickHome ()"><span id="idMenuProductName"><i class="fas fa-tree iProductName"></i>TreeChart</span></a>
+							<ul class="nav" id="idMainMenuList">
+								<li class="dropdown" id="idMainMenu"> 
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Charts&nbsp;<b class="caret"></b></a>
+									<ul class="dropdown-menu" id="idChartsMenuList">
+										</ul>
+									</li>
+								<li class="dropdown" id="idHistoryMenu" style="visibility: hidden"> 
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">History&nbsp;<b class="caret"></b></a>
+									<ul class="dropdown-menu" id="idHistoryMenuList">
+										</ul>
+									</li>
+								<li class="dropdown" id="idEyeMenu"> 
+									<div class="divEyeIcon" id="idEyeIcon">
+										</div>
+									</li>
+								</ul>
+							<ul class="nav pull-right">
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="idTwitterIcon"></span><span id="idTwitterUsername"></span>&nbsp;<b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a onclick="aboutDialog ();">About <span id="idMenuAboutProductName"></span>...</a></li>
+										<li class="divider"></li>
+										<li><a onclick="twToggleConnectCommand ();" id="idTwitterConnectMenuItem"></a></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		<div class="divPageBody">
-			<table>
+			<table class="theTable">
 				<tr>
 					<td class="tdPropertySetters">
 						<form class="formForSidebar styleGroup">

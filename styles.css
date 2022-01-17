@@ -6,7 +6,7 @@ body {
 
 .divPageBody {
 	width: 90%;
-	margin-top: 30px;
+	margin-top: 80px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 400px;
@@ -123,6 +123,7 @@ a {
 	}
 
 .tdPropertySetters {
+	display: none;
 	vertical-align: top;
 	width: 200px;
 	padding-left: 150px;
@@ -130,5 +131,26 @@ a {
 .tdChartViewer {
 	vertical-align: top;
 	padding-left: 50px;
+	}
+
+.divVersionNumber {
+	font-size: 12px;
+	float: right;
+	padding: 19px;
+	}
+.theTable {
+	margin-left: auto;
+	margin-right: auto;
+	}
+.iMenuCheck {
+	margin-left: -18px;
+	margin-right: 2px;
+	}
+.divMenubar .dropdown {
+	font-size: 14px;
+	}
+.iProductName {
+	font-size: 24px;
+	margin-right: 4px;
 	}
 

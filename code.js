@@ -1,6 +1,8 @@
-const urlOpmlFile = "http://drummer.scripting.com/davewiner/drummer/examples/treeChart1.opml"; 
+const urlOpmlFile = "http://drummer.scripting.com/cluelessnewbie/treechartDemo.opml";
 
 var treeText, treeNotes;
+var theCharts;
+var currentChart, flBuildChartsMenu = false;
 
 const defaultAppPrefs = {
 	rectFillColor: "#FFFFFF",
@@ -201,7 +203,6 @@ function resetAppPrefs () {
 		appPrefs [x] = defaultAppPrefs [x];
 		}
 	prefsChanged ();
-	viewTree (treeText, treeNotes);
 	}
 
 //fonts
@@ -281,82 +282,75 @@ function initSidebarItems () {
 		});
 	}
 
-function getTreeChartPackage (theOutline) {
-	var treeText = "", notesText = "", stylesText = "", optionsText = "";
-	function addlevel (subs, level) {
-		function getSubtree (node, level=0) {
-			var mytext = "";
-			if (node.subs !== undefined) {
-				node.subs.forEach (function (subnode) {
-					mytext += filledString ("\t", level) + subnode.text + "\n";
-					mytext += getSubtree (subnode, level + 1);
-					});
-				return (mytext);
-				}
-			else {
-				return ("");
-				}
-			}
-		subs.forEach (function (item) {
-			if (getBoolean (item.isComment)) {
-				}
-			else {
-				if ((level == 0) && beginsWith (item.text, "#")) {
-					var key = stringLower (stringDelete (item.text, 1, 1));
-					switch (key) {
-						case "notes":
-							notesText = getSubtree (item);
-							break;
-						case "options":
-							optionsText = getSubtree (item);
-							break;
-						case "styles":
-							stylesText = getSubtree (item);
-							break;
+
+function getTreeCharts (theOutline) {
+	var theCharts = new Array ();
+	function visitlevel (theNode, parentatts) {
+		var myatts = new Object ();
+		copyScalars (parentatts, myatts);
+		copyScalars (theNode, myatts);
+		if (theNode.subs !== undefined) {
+			theNode.subs.forEach (function (sub) {
+				if (sub.type == "treechart") {
+					for (var x in myatts) {
+						if (sub [x] === undefined) {
+							sub [x] = myatts [x];
+							}
 						}
+					theCharts.push (sub);
 					}
 				else {
-					treeText += filledString ("\t", level) + item.text + "\n";
-					if (item.subs !== undefined) {
-						addlevel (item.subs, level + 1);
-						}
+					visitlevel (sub, myatts);
 					}
-				}
-			});
-		}
-	addlevel (theOutline.opml.body.subs, 0);
-	
-	function undefinedIfEmpty (val) {
-		val = (trimWhitespace (val) == "") ? undefined : val;
-		return (val);
-		}
-	
-	var package = {
-		treeText,
-		notesText: undefinedIfEmpty (notesText),
-		optionsText: undefinedIfEmpty (optionsText),
-		stylesText: undefinedIfEmpty (stylesText)
-		};
-	
-	return (package)
-	}
-function readTreeOutline (callback) {
-	const options = {
-		flSubscribe: true
-		};
-	opml.read (urlOpmlFile, options, function (err, theOutline) {
-		if (!err) {
-			var package = getTreeChartPackage (theOutline);
-			
-			treeText = package.treeText;
-			treeNotes = package.notesText;
-			
-			
-			console.log ("readTreeOutline: treeText == \n" + treeText);
-			console.log ("readTreeOutline: treeNotes == \n" + treeNotes);
-			
-			callback (treeText, treeNotes);
+				});
 			}
+		}
+	visitlevel (theOutline.opml.body);
+	return (theCharts);
+	}
+function getIndentedText (theChart) {
+	let theText = "", indentlevel = 0;
+	function addnode (theNode) {
+		function add (s) {
+			theText += filledString ("\t", indentlevel) + s + "\n"
+			}
+		add (theNode.text);
+		if (theNode.subs !== undefined) {
+			indentlevel++;
+			theNode.subs.forEach (addnode);
+			indentlevel--;
+			}
+		}
+	addnode (theChart);
+	return (theText);
+	}
+
+function setCurrentChart (theChart) {
+	console.log ("setCurrentChart: theChart.text == " + theChart.text);
+	currentChart = theChart;
+	treeText = getIndentedText (currentChart);
+	console.log ("readTreeOutline: treeText == \n" + treeText);
+	treeNotes = undefined;
+	resetAppPrefs ();
+	
+	copyScalars (theChart, appPrefs);
+	
+	viewTree (getIndentedText (theChart));
+	flBuildChartsMenu = true;
+	}
+function buildChartsMenu (theCharts) {
+	var chartsMenu = $("#idChartsMenuList");
+	chartsMenu.empty ();
+	theCharts.forEach (function (theChart) {
+		var menutext = theChart.text;
+		if (theChart == currentChart) {
+			menutext = "<i class=\"fa fa-check iMenuCheck\"></i>" + menutext;
+			}
+		var theListItem = $("<li><a>" + menutext + "</a></li>");
+		$(chartsMenu).append (theListItem);
+		$(theListItem).click (function () {
+			setCurrentChart (theChart);
+			});
 		});
 	}
 function viewTree (treeText, treeNotes) {
@@ -390,12 +384,28 @@ function viewTree (treeText, treeNotes) {
 	$("#idNotes").html (treeNotes);
 	}
 
-
+function readTreeOutline (callback) {
+	const options = {
+		flSubscribe: true
+		};
+	opml.read (urlOpmlFile, options, function (err, theOutline) {
+		if (!err) {
+			theCharts = getTreeCharts (theOutline);
+			buildChartsMenu (theCharts);
+			setCurrentChart (theCharts [0]);
+			callback (treeText, treeNotes);
+			}
+		});
+	}
 
 function everySecond () {
 	if (flPrefsChanged) {
 		flPrefsChanged = false;
 		localStorage.treeChartPrefs = jsonStringify (appPrefs);
+		}
+	if (flBuildChartsMenu) {
+		flBuildChartsMenu = false;
+		buildChartsMenu (theCharts);
 		}
 	}
 function startup () {
