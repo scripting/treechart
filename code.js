@@ -1,8 +1,8 @@
-const urlOpmlFile = "http://drummer.scripting.com/cluelessnewbie/treechartDemo.opml";
+const urlDefaultOpmlFile = "http://drummer.scripting.com/cluelessnewbie/treechartDemo.opml";
 
 var treeText, treeNotes;
 var theCharts;
-var currentChart, flBuildChartsMenu = false;
+var currentChart, flBuildChartsMenu = false, whenCurrentChartCreated = undefined;
 
 const defaultAppPrefs = {
 	rectFillColor: "#FFFFFF",
@@ -63,7 +63,6 @@ function buildStylesFromPrefs () {
 	addStyle ("line", "stroke-dasharray", appPrefs.lineStrokeDashArray);
 	addStyle ("line", "fill", appPrefs.lineColor);
 	
-	console.log ("buildStylesFromPrefs: stylestext == " + stylestext);
 	
 	return (stylestext);
 	}
@@ -107,7 +106,6 @@ function buildOptionsFromPrefs () {
 		drawRoot: false
 		};
 	
-	console.log ("buildOptionsFromPrefs: options == " + jsonStringify (options));
 	
 	return (options);
 	}
@@ -184,12 +182,10 @@ function setTreeRootPosition (pos) {
 	viewTree (treeText, treeNotes);
 	}
 
-
 function setTextStyle () {
 	var flBold = getBoolean ($("#idTextStyleBold").prop ("checked"));
 	var flItalic = getBoolean ($("#idTextStyleItalic").prop ("checked"));
 	
-	console.log ("setTextStyle: flBold == " + flBold + ", flItalic == " + flItalic);
 	
 	appPrefs.textFontWeight = (flBold) ? "bold" : "normal";
 	appPrefs.textFontStyle = (flItalic) ? "italic" : "normal";
@@ -328,8 +324,8 @@ function getIndentedText (theChart) {
 function setCurrentChart (theChart) {
 	console.log ("setCurrentChart: theChart.text == " + theChart.text);
 	currentChart = theChart;
+	whenCurrentChartCreated = theChart.created; 
 	treeText = getIndentedText (currentChart);
-	console.log ("readTreeOutline: treeText == \n" + treeText);
 	treeNotes = undefined;
 	resetAppPrefs ();
 	
@@ -383,8 +379,19 @@ function viewTree (treeText, treeNotes) {
 		} );
 	$("#idNotes").html (treeNotes);
 	}
+function getCurrentChartByWhenCreated () {
+	var ixCurrentChart = 0, when = whenCurrentChartCreated;
+	if (when !== undefined) {
+		theCharts.forEach (function (item, ix) {
+			if (item.created == when) {
+				ixCurrentChart = ix;
+				}
+			});
+		}
+	return (ixCurrentChart);
+	}
 
-function readTreeOutline (callback) {
+function readTreeOutline (urlOpmlFile, callback) {
 	const options = {
 		flSubscribe: true
 		};
@@ -392,7 +399,10 @@ function readTreeOutline (callback) {
 		if (!err) {
 			theCharts = getTreeCharts (theOutline);
 			buildChartsMenu (theCharts);
-			setCurrentChart (theCharts [0]);
+			
+			var ixCurrentChart = getCurrentChartByWhenCreated ();
+			setCurrentChart (theCharts [ixCurrentChart]);
+			
 			callback (treeText, treeNotes);
 			}
 		});
@@ -427,7 +437,13 @@ function startup () {
 		catch (err) {
 			}
 		}
-	readTreeOutline (function (theText, theNotes) {
+	
+	var urlparam = getURLParameter ("url"), urlOpmlFile = urlDefaultOpmlFile;
+	if (urlparam != "null") { 
+		urlOpmlFile = urlparam;
+		}
+	
+	readTreeOutline (urlOpmlFile, function (theText, theNotes) {
 		treeText = theText; //set global
 		treeNotes = theNotes; //set global
 		if (flStartingUp) {
