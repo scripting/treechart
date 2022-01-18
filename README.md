@@ -126,3 +126,7 @@ treeHeight: 700,
 
 5. Tree charts were a killer feature in <a href="http://static.userland.com/misc/outliners/images/more11c/treeChart.gif">MORE 1.1c in 1986</a>. The users loved them. Turning an outline into a visual tree chart helps people see the value of outlining in a new way. We liked to say "The C stands for color!," which was, in 1986 a new feature for graphic computers. 
 
+### Questions
+
+Post questions <a href="https://github.com/scripting/drummerRFC/issues/20">here</a>. 
+
