@@ -4,9 +4,9 @@ Displays an outline as a tree chart.
 
 ### What the Tree Chart app does
 
-To get started, click this link to run the Tree Chart app in your browser. 
+To get started, <a href="http://treechart.scripting.com/?url=http://drummer.scripting.com/cluelessnewbie/treechartDemo.opml">click this link</a> to run the Tree Chart app in your browser. 
 
-When it opens there will be a chart showing different operating systems, and names of compatible products. 
+When it opens there will be a chart showing different kinds of computers, organized by the operating systems they run. It's just an example to show how it works.  
 
 If you choose a different name from the Charts menu, it will show that chart. 
 
@@ -14,25 +14,31 @@ So that's basically what it does, shows you a tree chart.
 
 ### There's an outline behind the chart
 
-I used my Drummer outliner to edit the chart. 
+I used Drummer to edit the outline behind the chart. 
 
 <a href="http://drummer.scripting.com/?url=http://drummer.scripting.com/cluelessnewbie/treechartDemo.opml">Click this link</a> to see the outline in read-only mode in Drummer.
 
+### Watch a video
+
+Here's a <a href="https://www.youtube.com/watch?v=-5DAQwL_eNE">video</a> that gives you an idea of how editing a tree chart in Drummer works. 
+
 ### Make your own outline
 
-Assuming you know the basics of using Drummer, this is how you make an outline for the tree chart app.
+This is how you make an outline to ve viewed as a tree chart.
 
-0. Think of what you want to make the outline about. Possibly a list of places you've visited or people you know. Favorite sports teams, colors, schools. 
+0. Think of what you want the outline to be about. Possibly a list of places you've visited, people you know, favorite sports teams, performers, schools. 
 
 1. Create a new outline using the <i>New</i> command in the File menu. 
 
-2. Make the outline public, noting the URL that's assigned to the outline. You'll need it later.
+3. Enter your outline. One main head, with several subs, and possibly other subs below the subs. 
 
-3. Enter your outline. On the top node in the outline, add a <i>type</i> attribute with the value <i>treechart.</i>
+4. On the top node in the outline, add a <i>type</i> attribute with the value <i>treechart</i>
 
-4. With the URL of the outline on the clipboard, enter this URL in the address bar of your browser. Then paste the URL of your outline after the = sigh and press Return. 
+2. Make the outline public, noting the URL that's assigned to the outline. You'll need it in the next step.
 
-5. A tree chart view of your outline should appear. Now when you make changes to the outline, a couple of seconds later the changes will be reflected in the tree chart view. 
+4. With the URL of the outline on the clipboard, enter <a href="http://treechart.scripting.com/?url=">this URL</a> in the address bar of your browser. Then paste the URL of your outline after the = sigh and press Return. 
+
+5. A tree chart view of your outline should appear. Now when you make changes to the outline, the changes will quickly be reflected in the tree chart view. 
 
 ### Changing the appearance of your tree chart
 
@@ -106,9 +112,13 @@ treeHeight: 700,
 
 1. You can have more than one treechart in an outline. Any headline with a type attribute of treechart is a chart and will appear in the Charts menu in the app.
 
+2. If you access the treechart app without a url parameter, it will show you the example outline as a tree chart. 
+
 2. treechart nodes inherit the attributes of their parents, so you can set up defaults in a parent headline, and put some or all of your treechart nodes under that headline, creating a standard style, without having to repeat the styles in each chart. Makes it easy to change a font size, say, for all the charts you have by changing it in one place. 
 
 3. Thanks to Jim Blackler for the wonderful <a href="https://github.com/jimblackler/treefun">treefun</a> package which is what is doing the SVG drawing in this app. 
 
 4. This is intended to be demo code for developers to use to start more complete outline rendering tools. 
+
+5. Tree charts were a killer feature in MORE 1.0 in 1986. The users loved them. Turning an outline into a visual tree chart helps people see the value of outlining in a new way.
 
