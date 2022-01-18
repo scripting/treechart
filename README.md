@@ -2,6 +2,14 @@
 
 Displays an outline as a tree chart. 
 
+### Screen shots
+
+Here's an outline, and a tree chart rendering of the outline. 
+
+* <img src="http://scripting.com/images/2022/01/18/outline.png" style="border: 1px solid silver;">
+
+* <img src="http://scripting.com/images/2022/01/18/treechart.png"  style="border: 1px solid silver;">
+
 ### What the Tree Chart app does
 
 To get started, <a href="http://treechart.scripting.com/?url=http://drummer.scripting.com/cluelessnewbie/treechartDemo.opml">click this link</a> to run the Tree Chart app in your browser. 
@@ -120,5 +128,5 @@ treeHeight: 700,
 
 4. This is intended to be demo code for developers to use to start more complete outline rendering tools. 
 
-5. Tree charts were a killer feature in MORE 1.0 in 1986. The users loved them. Turning an outline into a visual tree chart helps people see the value of outlining in a new way.
+5. Tree charts were a killer feature in <a href="http://static.userland.com/misc/outliners/images/more11c/treeChart.gif">MORE 1.1c in 1986</a>. The users loved them. Turning an outline into a visual tree chart helps people see the value of outlining in a new way. We liked to say "The C stands for color!," which was, in 1986 a new feature for graphic computers. 
 
