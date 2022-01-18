@@ -4,11 +4,7 @@ Displays an outline as a tree chart.
 
 ### Screen shots
 
-Here's an outline, and a tree chart rendering of the outline. 
-
-* <img src="http://scripting.com/images/2022/01/18/outline.png" style="border: 1px solid silver;">
-
-* <img src="http://scripting.com/images/2022/01/18/treechart.png"  style="border: 1px solid silver;">
+Here's an <a href="http://scripting.com/images/2022/01/18/outline.png">outline</a>, and a <a href="http://scripting.com/images/2022/01/18/treechart.png">tree chart</a> rendering of the outline. 
 
 ### What the Tree Chart app does
 
