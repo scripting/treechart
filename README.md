@@ -120,7 +120,7 @@ treeHeight: 700,
 
 2. treechart nodes inherit the attributes of their parents, so you can set up defaults in a parent headline, and put some or all of your treechart nodes under that headline, creating a standard style, without having to repeat the styles in each chart. Makes it easy to change a font size, say, for all the charts you have by changing it in one place. 
 
-3. Thanks to Jim Blackler for the wonderful <a href="https://github.com/jimblackler/treefun">treefun</a> package which is what is doing the SVG drawing in this app. 
+3. Thanks to <a href="https://github.com/jimblackler">Jim Blackler</a> for the wonderful <a href="https://github.com/jimblackler/treefun">treefun</a> package which is what is doing the SVG drawing in this app. 
 
 4. This is intended to be demo code for developers to use to start more complete outline rendering tools. 
 
